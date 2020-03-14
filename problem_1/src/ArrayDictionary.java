@@ -57,16 +57,37 @@ public class ArrayDictionary implements Dictionary {
     // Return true if an entry is deleted, false otherwise
     @Override
     public boolean remove(int key) {
-        // homework
-        return false;
+        boolean result = false;
+        for(int i=0; i<entries.length; i++){
+            if(entries[i]!=null)
+            if(key==entries[i].key){
+            entries[i]=null;
+            result = true;
+            break;
+            }
+        }
+        return result;
     }
 
     // Return true when the dictionary contains an entry
     // with the key
     @Override
     public boolean contains(int key) {
-        // homework
+        for (int i=0; i<entries.length; i++) {
+            if(entries[i]!=null) {
+                KVEntry trav = entries[i];
+                while(trav!=null){
+                    if(trav.key==key) return true;
+                    trav=trav.next;
+                }
+                if (key == entries[i].key) {
+                    return true;
+                }
+            }
+        }
         return false;
+
+
     }
 
     // Return the entry value with the given key
