@@ -1,6 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 public class MaxHeapTest {
@@ -56,5 +58,47 @@ public class MaxHeapTest {
             System.out.println(i);
             assertEquals(expected[i], actual[i].toArray());
         }
+    }
+    @Test
+    public void PerfMaxHeapLogN() {
+        int interval =10000;
+        int quantity = 100;
+        Integer[][] data = new Integer[quantity][];
+        for(int i=0; i<data.length; i++){
+            data[i] = new Integer[i*interval];
+            for(int j=0; j<data[i].length; j++)
+                data[i][j]=j;
+        }
+        long[] timeData = new long[data.length];
+        for(int i=0; i<data.length; i++) {
+            long start = System.nanoTime();
+            MaxHeap time = new MaxHeap(data.length);
+            time.MaxHeapLogN(data[i]);
+            long end = System.nanoTime();
+            timeData[i]=(end - start);
+        }
+        for(int i=0; i<quantity; i++)
+            System.out.println(timeData[i]);
+    }
+    @Test
+    public void PerfMaxHeapN() { // this is a great test :D
+        int interval =10000;
+        int quantity = 100;
+        Integer[][] data = new Integer[quantity][];
+        for(int i=0; i<data.length; i++){
+            data[i] = new Integer[i*interval];
+            for(int j=0; j<data[i].length; j++)
+            data[i][j]=j;
+        }
+        long[] timeData = new long[data.length];
+        for(int i=0; i<data.length; i++) {
+            long start = System.nanoTime();
+            MaxHeap time = new MaxHeap(data.length);
+            time.MaxHeapN(data[i]);
+            long end = System.nanoTime();
+            timeData[i]=(end - start);
+        }
+        for(int i=0; i<quantity; i++)
+        System.out.println(timeData[i]);
     }
 }

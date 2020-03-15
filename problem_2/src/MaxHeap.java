@@ -44,7 +44,6 @@ public class MaxHeap implements Heap {
         int curr = i;
         if(data[curr]!=null) {
             while (data[curr] > data[(curr-1)/ 2]) {
-                System.out.println(data[curr] + " " + data[curr / 2]);
                     swap(curr, (curr - 1) / 2);
                     curr = (curr - 1) / 2;
                 }
